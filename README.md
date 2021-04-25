@@ -46,6 +46,7 @@
 * <strong>Não</strong> consegue mostrar componentes um abaixo do outro sem a tag <code><> </></code> ao redor.
   * Conceito de FRAGMENT
 * Métodos e atributos HTML no React sempre seguem o camelCase (ex: ```<button onClick>```)
+* React Hook (métodos começados em USE) só podem ser utilizados dentro do componente, não dentro do static por exemplo
 ### Conceitos
 #### Componente
 * Uma função que retorna HTML
@@ -113,6 +114,18 @@ const [counter, setCounter] = useState(counterValue);
 #### NextJS (Server NODE)
 * O browser faz a requisição para o Node (NextJS), que puxa os dados do backend (API REST) em formato JSON, converte para HTML CSS E JS e devolve para o browser a página pronta. (MODELO SSR)
 * Para páginas públicas
+  * *** Possui um componente chamado Image - Este componente formata e otimiza a imagem sem necessitar tratativa do backend ou de algum editor
+  * *** as propriedades Width e Height não se referem a apresentação, e sim ao tamanho que a imagem deve ser carregada.
+  * *** É necessário passar os dominios de hospedagem em um arquivo next.config.js.
+  ```
+  module.exports = {
+    images: {
+      domains: ['storage.googleapis.com']
+    }
+  };
+  ```
+* File System Routing
+  * o nome dos arquivos na pasta page que não começam com _ são os arquivos que formam as rotas da aplicação
 
 # Aula 2
 
@@ -169,3 +182,24 @@ terminal: yarn add typescript @types/react @types/node -D
 
 ### DATE-FNS
 * Biblioteca para trabalhar com datas dentro do JS (Recomendado pelo Diego)
+
+# Aula 3
+
+* CRIAR A HOME E PÁGINA DO PODCAST
+
+* As funções possuem tipagem.
+Exemplo: ```import { GetStaticProps } from 'next'```
+
+* Formatar os dados logo após a chamada da API por questões de performance
+
+* Estruturas de repetição dentro do REACT precisa obrigatoriamente no primeiro elemento que retorna da propriedade KEY
+  * Essa propriedade existe por padrão em todos os componentes do REACT
+  * Serve para manutenção das listas, tendo que recriar toda a lista novamente (em um ambiente com muitos dados pode ter performance reduzida)
+
+### SLUG
+* uma string formatada de uma maneira url-friendly.
+
+### AXIOS ?
+
+## RANDOM STATIC REGENERATION
+- Páginas SSG que podem ser dinâmicas
