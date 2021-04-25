@@ -201,5 +201,67 @@ Exemplo: ```import { GetStaticProps } from 'next'```
 
 ### AXIOS ?
 
+# 4 aula
 ## RANDOM STATIC REGENERATION
-- Páginas SSG que podem ser dinâmicas
+* Páginas SSG que podem ser dinâmicas
+* Funcionamento da geração de páginas dinâmicas
+
+```
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [
+      { params: { slug: 'a-importancia-da-contribuicao-em-open-source' } }
+    ],
+    fallback: 'blocking',
+  }
+}
+```
+* Ao passar os paths vazios, o next não vai gerar nenhuma página estática.
+* fallback = false irá retornar o 404.
+* fallback = true irá gerar uma página estática após o acesso do usuário. (Client Side)#
+  * Para corrigir o erro de geração de página, porque o client não espera o carregamento dos dados deve-se importar a função useRouter() e utilizar seu método isFallback?
+```
+import { useRouter } from 'next/routes'
+
+const router = useRouter()
+
+if(router.isFallback){
+  return (
+    <p>Carregando...</p>
+  )
+}
+```
+* fallback = blocking irá gerar a página estática na camada do NEXT.JS
+
+* blocking e true = incremental static regeneration
+
+## Context API
+* Monitora as informações em um dado contexto e atualiza a cada alteração.
+
+## REACT
+* Ao passar parâmetros para uma função, é necessário passá-la através de uma arrow function, pois o react reconhece como se estivesse passando o retorno da função.
+Ex: 
+  * onClick=<del>{play(episode)}</del> 
+  * onClick=<mark>{() => play(episode)}</mark>
+
+### RC-SLIDER
+* Biblioteca react para slider
+
+### Tricks
+* quando queremos validar mas sem o else, podemos usar a propriedade seguida de dois &&
+* quando queremos validar só o else usamos o ||
+Ex: { episode && código para executar } e { episode || código para executar }
+
+* acessar um elemento nativo pelo react - utilizar REFS
+( criar uma referência para o elemento que quer manipular )
+  * sempre iniciar com null
+
+```
+const audioRef = useRef<HTMLAudioElement>(null);
+
+<audio
+            src={episode.url}
+            ref={audioRef}
+            autoPlay
+          />
+```
