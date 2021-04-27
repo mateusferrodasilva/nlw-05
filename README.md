@@ -220,6 +220,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 * fallback = false irá retornar o 404.
 * fallback = true irá gerar uma página estática após o acesso do usuário. (Client Side)#
   * Para corrigir o erro de geração de página, porque o client não espera o carregamento dos dados deve-se importar a função useRouter() e utilizar seu método isFallback?
+* fallback = blocking irá gerar uma página estática
 ```
 import { useRouter } from 'next/routes'
 
@@ -265,3 +266,5 @@ const audioRef = useRef<HTMLAudioElement>(null);
             autoPlay
           />
 ```
+* Principio da Imutabilidade em React. (Trouxe do paradigma funcional)
+  * Quando for criar uma nova informação, copiar a informação anterior e criar uma nova e não atualizá-la.
